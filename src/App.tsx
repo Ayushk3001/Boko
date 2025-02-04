@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Hotel, Phone, ArrowRight } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
 import PhoneInput from 'react-phone-number-input';
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
   const [isOTP, setIsOTP] = useState(false);
   const [phone, setPhone] = useState('');
+  const otpInputs = useRef([]);
+
+  const handleOTPChange = (index, value) => {
+    if (value.length === 1 && index < 5) {
+      otpInputs.current[index + 1].focus();
+    }
+  };
 
   const flipVariants = {
     enter: {
@@ -23,7 +30,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Hotel className="w-12 h-12 mx-auto text-blue-600" />
+          <img src="https://i.postimg.cc/RCD4k91t/boko.jpg" alt="Boko Logo" className="w-12 h-12 mx-auto" />
           <h1 className="text-3xl font-bold mt-4 text-gray-800">Boko</h1>
         </div>
 
@@ -108,6 +115,8 @@ function App() {
                           key={i}
                           type="text"
                           maxLength={1}
+                          ref={(el) => (otpInputs.current[i] = el)}
+                          onChange={(e) => handleOTPChange(i, e.target.value)}
                           className="w-12 h-12 text-center border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-lg font-semibold"
                         />
                       ))}
