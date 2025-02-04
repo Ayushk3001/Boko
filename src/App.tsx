@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Hotel, Phone, Lock, ArrowRight } from 'lucide-react';
+import { Hotel, Phone, ArrowRight } from 'lucide-react';
+import PhoneInput from 'react-phone-number-input';
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
   const [isOTP, setIsOTP] = useState(false);
+  const [phone, setPhone] = useState('');
 
   const flipVariants = {
     enter: {
@@ -22,7 +24,7 @@ function App() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Hotel className="w-12 h-12 mx-auto text-blue-600" />
-          <h1 className="text-3xl font-bold mt-4 text-gray-800">Hotel OS</h1>
+          <h1 className="text-3xl font-bold mt-4 text-gray-800">Boko</h1>
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden relative perspective-1000">
@@ -40,9 +42,13 @@ function App() {
                 <div className="space-y-4">
                   <div className="relative">
                     <Phone className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
-                    <input
-                      type="tel"
-                      placeholder="Phone Number"
+                    <PhoneInput
+                      placeholder="Enter phone number"
+                      value={phone}
+                      onChange={setPhone}
+                      defaultCountry="IN"
+                      international
+                      withCountryCallingCode
                       className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     />
                   </div>
@@ -74,9 +80,13 @@ function App() {
                   <div className="space-y-4">
                     <div className="relative">
                       <Phone className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
-                      <input
-                        type="tel"
-                        placeholder="Phone Number"
+                      <PhoneInput
+                        placeholder="Enter phone number"
+                        value={phone}
+                        onChange={setPhone}
+                        defaultCountry="IN"
+                        international
+                        withCountryCallingCode
                         className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
