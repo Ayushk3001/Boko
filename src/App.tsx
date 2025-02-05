@@ -11,7 +11,7 @@ function App() {
 
   const handleOTPChange = (index, value) => {
     if (value.length === 1 && index < 5) {
-      otpInputs.current[index + 1].focus();
+      otpInputs.current[index + 1]?.focus();
     }
   };
 
